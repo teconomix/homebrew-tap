@@ -9,7 +9,7 @@ cask "local-transcriber" do
   url "https://transcriber.teconomix.net/download/#{version}/install.sh"
   name "Local Transcriber"
   desc "Transcribe meetings, calls and dictation locally, with speaker recognition"
-  homepage "https://transcriber.teconomix.net"
+  homepage "https://transcriber.teconomix.net/"
 
   livecheck do
     url "https://transcriber.teconomix.net/latest.txt"
@@ -17,7 +17,7 @@ cask "local-transcriber" do
   end
 
   depends_on arch: :arm64
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   installer script: {
     executable: "/bin/bash",
