@@ -1,10 +1,10 @@
-# Homebrew-Cask (Vorlage) – scripts/make-release.sh füllt 0.8.1/b49a68df3c24d455f9e7991087e9826bdc7edf844f1bbe1bfdcd7c394906fbb5/https://transcriber.teconomix.net und legt das Ergebnis nach
+# Homebrew-Cask (Vorlage) – scripts/make-release.sh füllt 0.8.2/4235e401b1a483b8f98e2fe136fc9e283239c1b3c083b5bef116ee98fc75aa59/https://transcriber.teconomix.net und legt das Ergebnis nach
 # dist/homebrew/local-transcriber.rb; von dort ins Tap-Repo github.com/teconomix/homebrew-tap (Casks/).
 # Der Cask lädt nur den versionierten Installer und führt ihn aus – der erledigt alles wie beim curl-Weg
 # (Prüfsummen, Python-Umgebung, Modelle, App in ~/Applications). brew upgrade = Installer erneut = Update.
 cask "local-transcriber" do
-  version "0.8.1"
-  sha256 "b49a68df3c24d455f9e7991087e9826bdc7edf844f1bbe1bfdcd7c394906fbb5"
+  version "0.8.2"
+  sha256 "4235e401b1a483b8f98e2fe136fc9e283239c1b3c083b5bef116ee98fc75aa59"
 
   url "https://transcriber.teconomix.net/download/#{version}/install.sh"
   name "Local Transcriber"
