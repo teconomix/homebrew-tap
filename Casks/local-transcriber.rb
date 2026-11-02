@@ -1,10 +1,10 @@
-# Homebrew-Cask (Vorlage) – scripts/make-release.sh füllt 0.13/c88e616a6f48578b8ef73a07fd12bae31818c67513f4ceef561b4029f68806bb/https://transcriber.teconomix.net und legt das Ergebnis nach
+# Homebrew-Cask (Vorlage) – scripts/make-release.sh füllt 0.14/136d9b27a60360a13a24142350a80228f0416bbef473b862c9abc4b041acd9b5/https://transcriber.teconomix.net und legt das Ergebnis nach
 # dist/homebrew/local-transcriber.rb; von dort ins Tap-Repo github.com/teconomix/homebrew-tap (Casks/).
 # Der Cask lädt nur den versionierten Installer und führt ihn aus – der erledigt alles wie beim curl-Weg
 # (Prüfsummen, Python-Umgebung, Modelle, App in ~/Applications). brew upgrade = Installer erneut = Update.
 cask "local-transcriber" do
-  version "0.13"
-  sha256 "c88e616a6f48578b8ef73a07fd12bae31818c67513f4ceef561b4029f68806bb"
+  version "0.14"
+  sha256 "136d9b27a60360a13a24142350a80228f0416bbef473b862c9abc4b041acd9b5"
 
   url "https://transcriber.teconomix.net/download/#{version}/install.sh"
   name "Local Transcriber"
@@ -24,8 +24,8 @@ cask "local-transcriber" do
     args:       ["#{staged_path}/install.sh", "--yes", "--no-watch"],
   }
 
-  # uninstall.sh fragt nach, ob Stimmdatenbank und Whisper-Modell gelöscht werden sollen; ohne Terminal-Eingabe
-  # bleiben beide liegen. Aufnahmen unter ~/Transcriber bleiben immer.
+  # Läuft auch bei brew upgrade. uninstall.sh erkennt, dass es kein Terminal im Vordergrund hat, und entfernt nur App und
+  # Wächter; Programmdaten, Modelle und Stimmdatenbank bleiben. Aufnahmen unter ~/Transcriber bleiben immer.
   uninstall script: {
     executable: "/bin/bash",
     args:       ["-c", 'f="$HOME/.local/share/transcriber/uninstall.sh"; [ -f "$f" ] && bash "$f" || true'],
@@ -37,5 +37,7 @@ cask "local-transcriber" do
     Folder watcher (optional, transcribes audio files dropped into ~/Transcriber):
       curl -fsSL https://transcriber.teconomix.net/install.sh | bash      # answer "y" to the watcher question
     Once set up, brew upgrade keeps it running.
+    brew uninstall removes the app and keeps its data. To remove that too, run this first:
+      bash ~/.local/share/transcriber/uninstall.sh
   EOS
 end
